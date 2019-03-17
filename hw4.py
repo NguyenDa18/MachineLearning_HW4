@@ -30,27 +30,38 @@ x = data[:, 1:]
 y = data[:, 0]  #labels
 y = y.reshape(5699, )
 
-sample_x = data[0:100, 1:]
-sample_y = y[0:100]
+sample_x = data[0:1000, 1:]
+sample_y = y[0:1000]
 
 # Build the SVM
 clf = svm.SVC(kernel='linear')
 clf.fit(x, y)
 y_pred = clf.predict(sample_x)
 
+for label, predicted in zip(sample_y, y_pred):
+    if (label == predicted):
+        continue
+    print("SVM predicticton = actual? %r" % label == predicted)
+
 scores = zip(sample_y, y_pred)
-print(scores)
+mapped_scores = list(scores)
 
 # Model Evaluation
-print(accuracy_score(sample_y, y_pred))
+print("---- SVM MODEL REPORT -----")
+print("Accuracy: %f" % accuracy_score(sample_y, y_pred))
 print(classification_report(sample_y, y_pred))
 
 # PCA - part II
-pca_model = PCA(n_components=500)
+pca_model = PCA(n_components=10)
 variance = pca_model.fit(data)
-# print(variance)
-# print(pca_model.explained_variance_)
-# print(pca_model.explained_variance_ratio_)
-# print(pca_model.explained_variance_ratio_.cumsum())
+print("--- PCA ---")
+print(variance)
+print("Eigenvalues: \n")
+print(pca_model.explained_variance_)
+print(pca_model.explained_variance_ratio_)
+print(pca_model.explained_variance_ratio_.cumsum())
+print("Principal components: \n")
+print(pca_model.components_)
 
 pca_data = pca_model.transform(data)
+print(pca_data)
