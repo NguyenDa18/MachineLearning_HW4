@@ -1,6 +1,7 @@
 import re
 import numpy as np
 from sklearn import svm, datasets
+from sklearn.decomposition import PCA
 
 lines = []
 with open('tester.txt', 'rt') as in_file:
