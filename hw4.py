@@ -53,6 +53,12 @@ mapped_scores = list(scores)
 print("---- SVM MODEL REPORT -----")
 print("Accuracy: %f" % accuracy_score(sample_y, y_pred))
 print(classification_report(sample_y, y_pred))
+# Writing data to file
+inputFile = open("SVM_info.txt", "w")
+inputFile.write("---- SVM MODEL REPORT ----- \n")
+inputFile.write("Accuracy: %f \n" % accuracy_score(sample_y, y_pred))
+inputFile.write(classification_report(sample_y, y_pred))
+inputFile.close()
 
 # PCA - part II
 pca_model = PCA(n_components=100)
@@ -70,3 +76,8 @@ print(pca_model.components_)
 
 pca_data = pca_model.transform(data)
 print(pca_data)
+
+# Writing data to file
+inputFile = open("PCA_info.txt", "w")
+inputFile.write(str(pca_model.explained_variance_))
+inputFile.close()

@@ -1,0 +1,8 @@
+---- SVM MODEL REPORT ----- 
+Accuracy: 0.989296 
+             precision    recall  f1-score   support
+
+       -1.0       0.99      0.99      0.99      3359
+        1.0       0.99      0.98      0.99      2340
+
+avg / total       0.99      0.99      0.99      5699
